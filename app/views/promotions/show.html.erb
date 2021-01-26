@@ -1,0 +1,7 @@
+<%=@promotion.name%>
+<%="Promoção de " + @promotion.name%>
+<%=number_to_percentage @promotion.discount_rate, precision: 2, separator: ',' %>
+<%=@promotion.code%>
+<%=@promotion.expiration_date.strftime("%d/%m/%Y")%>
+<%=@promotion.coupon_quantity%>
+<%=link_to 'Voltar', promotions_path%>

@@ -1,0 +1,10 @@
+<%if @promotions.size == 0 %>
+    <p>Nenhuma promoção cadastrada</p>
+<%else%>
+    <% @promotions.each do |promotion|%>
+        <%= link_to promotion.name, promotion_path(promotion) %> <br>
+        <%=promotion.description%>
+        <%=number_to_percentage promotion.discount_rate, precision: 2, separator: ','%>
+        <%=link_to 'Voltar', root_path%>
+    <%end%>
+<%end%>
