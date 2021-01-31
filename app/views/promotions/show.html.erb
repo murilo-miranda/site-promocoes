@@ -1,6 +1,6 @@
 <%="Promoção de " + @promotion.name%><br>
 <%=number_to_percentage @promotion.discount_rate, precision: 2, separator: ',' %><br>
 <%=@promotion.code%><br>
-<%=@promotion.expiration_date.strftime("%d/%m/%Y")%><br>
+<%= I18n.localize @promotion.expiration_date%><br>
 <%=@promotion.coupon_quantity%><br>
 <%=link_to 'Voltar', promotions_path%>
