@@ -1,7 +1,6 @@
-<%=@promotion.name%>
-<%="Promoção de " + @promotion.name%>
-<%=number_to_percentage @promotion.discount_rate, precision: 2, separator: ',' %>
-<%=@promotion.code%>
-<%=@promotion.expiration_date.strftime("%d/%m/%Y")%>
-<%=@promotion.coupon_quantity%>
+<%="Promoção de " + @promotion.name%><br>
+<%=number_to_percentage @promotion.discount_rate, precision: 2, separator: ',' %><br>
+<%=@promotion.code%><br>
+<%=@promotion.expiration_date.strftime("%d/%m/%Y")%><br>
+<%=@promotion.coupon_quantity%><br>
 <%=link_to 'Voltar', promotions_path%>
