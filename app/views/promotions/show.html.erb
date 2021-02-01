@@ -5,3 +5,6 @@
 <%=@promotion.coupon_quantity%><br>
 <%=link_to 'Voltar', promotions_path%>
 <%=link_to 'Editar', edit_promotion_path %>
+<%=link_to 'Deletar', promotion_path(@promotion),
+                        method: :delete,
+                        data: { confirm: 'Você tem certeza que deseja deletar essa promoção?'} %>

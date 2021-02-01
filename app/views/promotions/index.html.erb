@@ -1,6 +1,7 @@
 <%= link_to "Registrar uma promoção", new_promotion_path %> <br>
+<%=link_to 'Voltar', root_path%>
 
-<%if @promotions.size == 0 %>
+<%if @promotions.empty? %>
     <p>Nenhuma promoção cadastrada</p>
 <%else%>
     <dl>
@@ -8,7 +9,6 @@
         <dt> <%= link_to promotion.name, promotion_path(promotion)%> </dt>
         <dd> <%=promotion.description%> </dd>
         <dd> <%=number_to_percentage promotion.discount_rate, precision: 2, separator: ','%> </dd>
-        <%=link_to 'Voltar', root_path%> 
         <br>
         <br>
     <%end%>

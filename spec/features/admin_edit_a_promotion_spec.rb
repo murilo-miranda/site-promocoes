@@ -39,4 +39,22 @@ feature 'Admin edit a promotion' do
 
         expect(page).to have_content('deve ser único')
     end
+
+    scenario 'and edited successful' do
+        Promotion.create!(name: 'Natal', description: 'Promoção de natal',
+                        code: 'NATAL10', discount_rate: 10,
+                        coupon_quantity: 100, expiration_date: '22/12/2033')
+
+        visit root_path
+        click_on 'Promoções'
+        click_on 'Natal'
+        click_on 'Editar'
+        fill_in 'Descrição', with: 'Promoção HOHOHO'
+        fill_in 'Desconto', with: '20'
+        fill_in 'Data de término', with: '01/01/2033'
+        click_on 'Editar promoção'
+
+        expect(page).to have_no_content('deve ser único')
+        expect(page).to have_no_content('não pode ficar em branco')
+    end
 end        
