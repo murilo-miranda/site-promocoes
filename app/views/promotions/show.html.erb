@@ -1,10 +1,22 @@
+<% if flash[:notice] %>
+  <%= flash[:notice] %>
+<% end %>
+
+<%=link_to 'Voltar', promotions_path%>
+
 <%="Promoção de " + @promotion.name%><br>
 <%=number_to_percentage @promotion.discount_rate, precision: 2, separator: ',' %><br>
 <%=@promotion.code%><br>
+<%=@promotion.description%><br>
 <%= I18n.localize @promotion.expiration_date%><br>
 <%=@promotion.coupon_quantity%><br>
-<%=link_to 'Voltar', promotions_path%>
+
+<% @promotion.coupons.each do |coupon|%>
+  <%= coupon.code %>
+<% end %>
+
+<%= link_to 'Gerar cupons', generate_coupons_promotion_path(@promotion), method: :post%>
 <%=link_to 'Editar', edit_promotion_path %>
 <%=link_to 'Deletar', promotion_path(@promotion),
-                        method: :delete,
-                        data: { confirm: 'Você tem certeza que deseja deletar essa promoção?'} %>
+                      method: :delete,
+                      data: { confirm: 'Você tem certeza que deseja deletar essa promoção?'} %>

@@ -54,7 +54,6 @@ feature 'Admin edit a promotion' do
         fill_in 'Data de término', with: '01/01/2033'
         click_on 'Editar promoção'
 
-        expect(page).to have_no_content('deve ser único')
-        expect(page).to have_no_content('não pode ficar em branco')
+        expect(page).to have_content('Promoção HOHOHO')
     end
 end        
