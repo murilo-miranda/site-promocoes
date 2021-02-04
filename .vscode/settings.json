@@ -1,0 +1,12 @@
+{
+  "emmet.includeLanguages": {
+      "*.erb": "html",
+      "ruby": "html"
+  },
+  "editor.tabSize": 2,
+  "editor.rulers": [
+      
+      80
+    ],
+    "files.trimTrailingWhitespace": true
+}

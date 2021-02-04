@@ -13,7 +13,7 @@ class PromotionsController < ApplicationController
 
     def create
         @promotion = Promotion.new(promotion_params)
-        
+
         if @promotion.save
             redirect_to @promotion
         else
@@ -44,16 +44,13 @@ class PromotionsController < ApplicationController
 
     def generate_coupons
         @promotion = Promotion.find(params[:id])
-        (1..@promotion.coupon_quantity).each do |number|
-            Coupon.create!(code: "#{@promotion.code}-#{'%04d' % number}", promotion: @promotion)
-        end
-        flash[:notice] = 'Cupons gerados com sucesso'
-        redirect_to @promotion
+        @promotion.generate_coupons!
+        redirect_to @promotion, notice: t('.success')
     end
 
     private
         def promotion_params
-            params.require(:promotion).permit(:name, :description, :code, 
+            params.require(:promotion).permit(:name, :description, :code,
             :discount_rate, :coupon_quantity, :expiration_date)
         end
 end

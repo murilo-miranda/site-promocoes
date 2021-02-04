@@ -2,9 +2,9 @@
   <%= flash[:notice] %>
 <% end %>
 
-<%=link_to 'Voltar', promotions_path%>
+<%=link_to 'Voltar', promotions_path%> <br>
 
-<%="Promoção de " + @promotion.name%><br>
+<%='Promoção de ' + @promotion.name%><br>
 <%=number_to_percentage @promotion.discount_rate, precision: 2, separator: ',' %><br>
 <%=@promotion.code%><br>
 <%=@promotion.description%><br>
