@@ -13,6 +13,11 @@
 
 <% @promotion.coupons.each do |coupon|%>
   <%= coupon.code %>
+  <% if coupon.inactive? %>
+    <%= "#{coupon.code} (Inativo) "%>
+  <% else %>
+    <%= link_to 'Inativar', inactivate_coupon_path(coupon), method: :post %>
+  <% end %>
 <% end %>
 
 <%= link_to 'Gerar cupons', generate_coupons_promotion_path(@promotion), method: :post%>
