@@ -11,13 +11,13 @@
 <%= I18n.localize @promotion.expiration_date%><br>
 <%=@promotion.coupon_quantity%><br>
 
-<% @promotion.coupons.each do |coupon|%>
-  <%= coupon.code %>
-  <% if coupon.inactive? %>
-    <%= "#{coupon.code} (Inativo) "%>
-  <% else %>
-    <%= link_to 'Inativar', inactivate_coupon_path(coupon), method: :post %>
-  <% end %>
+<% @promotion.coupons.each do |coupon| %>
+  <div id="coupon-<%= coupon.id %>">
+    <span><%= coupon.code %> (<%= t (".#{coupon.status}") %>)</span>
+    <% if coupon.active? %>
+      <%= link_to 'Inativar', inactivate_coupon_path(coupon), method: :post %>
+    <% end %>
+  </div>
 <% end %>
 
 <%= link_to 'Gerar cupons', generate_coupons_promotion_path(@promotion), method: :post%>

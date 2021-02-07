@@ -51,6 +51,6 @@ class PromotionsController < ApplicationController
     private
         def promotion_params
             params.require(:promotion).permit(:name, :description, :code,
-            :discount_rate, :coupon_quantity, :expiration_date)
+            :discount_rate, :coupon_quantity, :expiration_date, :search)
         end
 end
