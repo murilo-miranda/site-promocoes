@@ -2,14 +2,16 @@ require 'rails_helper'
 
 feature 'Admin search for promotion' do
   scenario 'search for natal' do
+    user = User.create!(email: 'murilo@email.com', password: '123456')
     Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
                       code: 'NATAL10', discount_rate: 10, coupon_quantity: 10,
-                      expiration_date: '22/12/2033')
+                      expiration_date: '22/12/2033', user: user)
     Promotion.create!(name: 'Cyber Monday', coupon_quantity: 100,
                       description: 'Promoção de Cyber Monday',
                       code: 'CYBER15', discount_rate: 15,
-                      expiration_date: '22/12/2033')
+                      expiration_date: '22/12/2033', user: user)
 
+    login_as user
     visit root_path
     within('form') do
       fill_in 'search', with: 'Fulano'

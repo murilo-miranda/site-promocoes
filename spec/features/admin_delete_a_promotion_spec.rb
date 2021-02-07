@@ -2,9 +2,11 @@ require 'rails_helper'
 
 feature 'Admin delete a promotion' do
     scenario 'and delete successful' do
+        user = User.create!(email: 'murilo@email.com', password: '123456')
         Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
                         code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
-                        expiration_date: '22/12/2033')
+                        expiration_date: '22/12/2033', user: user)
+        login_as user
 
         visit root_path
         click_on 'Promoções'
@@ -20,12 +22,12 @@ feature 'Admin delete a promotion' do
         Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
                         code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
                         expiration_date: '22/12/2033')
-        
+
         visit root_path
         click_on 'Promoções'
         click_on 'Natal'
         click_on 'Deletar'
-        
+
         #Pesquisar por Drivers que possibilitam ao teste declinar a mensagem na hora de deletar
 
         visit root_path

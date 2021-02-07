@@ -2,10 +2,13 @@ require 'rails_helper'
 
 feature 'Admin generates coupons' do
     scenario 'of a promotion' do
+        user = User.create!(email: 'murilo@email.com', password: '123456')
         promotion = Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
                         code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
-                        expiration_date: '22/12/2033')
+                        expiration_date: '22/12/2033',
+                        user: user)
 
+        login_as user
         visit root_path
         click_on 'Promoções'
         click_on promotion.name

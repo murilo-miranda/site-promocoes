@@ -5,6 +5,7 @@
 <%=link_to 'Voltar', promotions_path%> <br>
 
 <%='Promoção de ' + @promotion.name%><br>
+<span>Cadastrada por: <%= @promotion.user.email %></span>
 <%=number_to_percentage @promotion.discount_rate, precision: 2, separator: ',' %><br>
 <%=@promotion.code%><br>
 <%=@promotion.description%><br>
