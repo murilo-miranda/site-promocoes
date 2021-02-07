@@ -1,10 +1,16 @@
 pt-BR:
   activerecord:
     models:
-      promotion: 
+      promotion:
         one: Promoção
         other: Promoções
+      user:
+        one: Usuário
+        other: Usuários
     attributes:
+      user:
+        email: E-mail
+        password: Senha
       promotion:
         name: "Nome"
         code: "Código"
