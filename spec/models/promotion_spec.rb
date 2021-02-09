@@ -65,9 +65,37 @@ describe Promotion do
     end
   end
 
-  context '#generate_coupons!' do
   # TODO dar uma olhada no código de teste
+  context '#generate_coupons!' do
     it 'hide button if generate maximun coupons' do
+    end
+  end
+
+  context '#approve!' do
+    it 'should generate a PromotionApproval object' do
+      creator = User.create!(email: 'murilo@email.com', password: '123456')
+      approval_user = User.create!(email: 'joao@email.com', password: '123456')
+      promotion = Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
+                                    code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
+                                    expiration_date: '22/12/2033', user: creator)
+
+      promotion.approve!(approval_user)
+
+      promotion.reload
+      expect(promotion.approved?).to be_truthy
+      expect(promotion.approver?).to eq approval_user
+    end
+
+    it 'should not approve if same user' do
+      creator = User.create!(email: 'murilo@email.com', password: '123456')
+      promotion = Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
+                                    code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
+                                    expiration_date: '22/12/2033', user: creator)
+
+      promotion.approve!(creator)
+
+      promotion.reload
+      expect(promotion.approved?).to be_falsy
     end
   end
 end
