@@ -1,0 +1,14 @@
+<dl>
+<% @promotions.each do |promotion| %>
+  <dt> Nome: </dt>
+  <%= promotion.name %>
+  <dt> Descrição: </dt>
+  <%= promotion.description %>
+  <dt> Desconto: </dt>
+  <%= number_to_percentage promotion.discount_rate, precision: 2, separator: ',' %>
+  <dt> Código </dt>
+  <%= promotion.code %>
+  <dt> Data de expiração: </dt>
+  <%= promotion.expiration_date %>
+<% end %>
+</dl>
