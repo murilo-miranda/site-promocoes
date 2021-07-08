@@ -30,6 +30,7 @@ feature 'Admin view promotions' do
 
     visit root_path
     click_on 'Promoções'
+    click_on 'Cyber Monday'
 
     expect(page).to have_content('Cyber Monday')
     expect(page).to have_content('Promoção de Cyber Monday')
