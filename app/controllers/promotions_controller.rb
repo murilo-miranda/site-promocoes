@@ -42,6 +42,16 @@ class PromotionsController < ApplicationController
     end
   end
 
+  def generate_coupon
+    @promotion = Promotion.find(params[:id])
+
+    (1..@promotion.coupon_quantity).each do |number|
+      Coupon.create!(code: "#{@promotion.code}-#{'%04d' % number}", promotion: @promotion)
+    end
+
+    redirect_to promotion_path(@promotion)
+  end
+
   private
 
   def promotion_params

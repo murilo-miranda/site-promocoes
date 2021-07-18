@@ -30,7 +30,7 @@ feature 'Admin edit a promotion' do
     fill_in 'Desconto', with: '15'
     fill_in 'Quantidade de cupons', with: '100'
     fill_in 'Data de término', with: '22/12/2050'
-    click_on 'Atualizar promoção'
+    click_on 'Enviar'
 
     expect(current_path).to eq promotion_path(Promotion.last)
     expect(page).to have_content('Pascoa')
@@ -59,7 +59,7 @@ feature 'Admin edit a promotion' do
     fill_in 'Desconto', with: ''
     fill_in 'Quantidade de cupons', with: ''
     fill_in 'Data de término', with: ''
-    click_on 'Atualizar promoção'
+    click_on 'Enviar'
 
     expect(page).to have_content('Não foi possível atualizar a promoção')
     expect(page).to have_content('Nome não pode ficar em branco')
@@ -83,7 +83,7 @@ feature 'Admin edit a promotion' do
     click_on 'Editar promoção'
 
     fill_in 'Código', with: 'NATAL10'
-    click_on 'Atualizar promoção'
+    click_on 'Enviar'
 
     expect(page).to have_content('Não foi possível atualizar a promoção')
     expect(page).to have_content('Código já está em uso')
