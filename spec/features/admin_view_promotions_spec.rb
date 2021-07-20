@@ -1,6 +1,17 @@
 require 'rails_helper'
 
 feature 'Admin view promotions' do
+  scenario 'must be signed in' do
+    Promotion.create(name: 'Natal', description: 'Promoção de natal',
+                    code: 'NATAL10', discount_rate: 10, coupon_quantity: 10,
+                    expiration_date: '22/12/2033')
+
+    visit root_path
+    click_on 'Promoções'
+
+    expect(current_path).to eq new_admin_session_path
+  end
+
   scenario 'successfully' do
     Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
                       code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
@@ -8,7 +19,9 @@ feature 'Admin view promotions' do
     Promotion.create!(name: 'Cyber Monday', coupon_quantity: 100,
                       description: 'Promoção de Cyber Monday', code: 'CYBER15',
                       discount_rate: 15, expiration_date: '22/12/2033')
+    admin = Admin.create!(email: 'msilva@admin', password: 'f4k3p455w0rd')
 
+    login_as admin
     visit root_path
     click_on 'Promoções'
 
@@ -27,7 +40,9 @@ feature 'Admin view promotions' do
     Promotion.create!(name: 'Cyber Monday', coupon_quantity: 90,
                       description: 'Promoção de Cyber Monday', code: 'CYBER15',
                       discount_rate: 15, expiration_date: '22/12/2033')
+    admin = Admin.create!(email: 'msilva@admin', password: 'f4k3p455w0rd')
 
+    login_as admin
     visit root_path
     click_on 'Promoções'
     click_on 'Cyber Monday'
@@ -41,6 +56,9 @@ feature 'Admin view promotions' do
   end
 
   scenario 'and no promotion are created' do
+    admin = Admin.create!(email: 'msilva@admin', password: 'f4k3p455w0rd')
+
+    login_as admin
     visit root_path
     click_on 'Promoções'
 
@@ -51,7 +69,9 @@ feature 'Admin view promotions' do
     Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
                       code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
                       expiration_date: '22/12/2033')
+    admin = Admin.create!(email: 'msilva@admin', password: 'f4k3p455w0rd')
 
+    login_as admin
     visit root_path
     click_on 'Promoções'
     click_on 'Voltar'
@@ -63,7 +83,9 @@ feature 'Admin view promotions' do
     Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
                       code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
                       expiration_date: '22/12/2033')
+    admin = Admin.create!(email: 'msilva@admin', password: 'f4k3p455w0rd')
 
+    login_as admin
     visit root_path
     click_on 'Promoções'
     click_on 'Natal'

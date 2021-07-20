@@ -11,6 +11,16 @@
   </head>
 
   <body>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
+    <% if admin_signed_in? %>
+      <%= current_admin.email %>
+      <%= link_to 'Sair', destroy_admin_session_path %>
+    <% else %>
+      <%= link_to 'Entrar', new_admin_session_path %>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>

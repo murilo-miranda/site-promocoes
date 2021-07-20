@@ -1,11 +1,24 @@
 require 'rails_helper'
 
 feature 'Admin edit a promotion' do
+  scenario 'must be signed in' do
+    Promotion.create(name: 'Natal', description: 'Promoção de natal',
+                    code: 'NATAL10', discount_rate: 10, coupon_quantity: 10,
+                    expiration_date: '22/12/2033')
+
+    visit root_path
+    click_on 'Promoções'
+
+    expect(current_path).to eq new_admin_session_path
+  end
+
   scenario 'expecting a edit link' do
     Promotion.create(name: 'Natal', description: 'Promoção de natal',
                      code: 'NATAL10', discount_rate: 10, coupon_quantity: 10,
                      expiration_date: '22/12/2033')
+    admin = Admin.create!(email: 'msilva@admin', password: 'f4k3p455w0rd')
 
+    login_as admin
     visit root_path
     click_on 'Promoções'
     click_on 'Natal'
@@ -18,7 +31,9 @@ feature 'Admin edit a promotion' do
     Promotion.create(name: 'Natal', description: 'Promoção de natal',
                     code: 'NATAL10', discount_rate: 10, coupon_quantity: 10,
                     expiration_date: '22/12/2033')
+    admin = Admin.create!(email: 'msilva@admin', password: 'f4k3p455w0rd')
 
+    login_as admin
     visit root_path
     click_on 'Promoções'
     click_on 'Natal'
@@ -47,7 +62,9 @@ feature 'Admin edit a promotion' do
     Promotion.create!(name: 'Natal', description: 'Promoção de natal',
                     code: 'NATAL10', discount_rate: 10, coupon_quantity: 10,
                     expiration_date: '22/12/2033')
+    admin = Admin.create!(email: 'msilva@admin', password: 'f4k3p455w0rd')
 
+    login_as admin
     visit root_path
     click_on 'Promoções'
     click_on 'Natal'
@@ -76,7 +93,9 @@ feature 'Admin edit a promotion' do
     Promotion.create!(name: 'Dia do jogador', description: 'Promoção de natal',
                       code: 'PLAY10', discount_rate: 10, coupon_quantity: 10,
                       expiration_date: '22/12/2033')
+    admin = Admin.create!(email: 'msilva@admin', password: 'f4k3p455w0rd')
 
+    login_as admin
     visit root_path
     click_on 'Promoções'
     click_on 'Dia do jogador'
