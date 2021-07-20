@@ -6,4 +6,12 @@ class CouponController < ApplicationController
 
     redirect_to promotion_path(coupon.promotion)
   end
+
+  def active
+    coupon = Coupon.find(params[:id])
+
+    coupon.active!
+
+    redirect_to promotion_path(coupon.promotion)
+  end
 end

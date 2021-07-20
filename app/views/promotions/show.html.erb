@@ -24,6 +24,8 @@
       (<%= t(coupon.status) %>)
     <% if coupon.active? %>
         <%= link_to 'Inativar', inactivate_coupon_path(coupon), method: :post %>
+    <% else %>
+      <%= link_to 'Ativar', active_coupon_path(coupon), method: :post %>
     <% end %>
     </div>
 <% end %>

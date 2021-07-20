@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   end
 
   resources :coupon, onlu: %i[] do
-    post 'inactivate', on: :member
+    member do
+      post 'inactivate'
+      post 'active'
+    end
   end
 end
