@@ -41,4 +41,30 @@ describe Promotion do
       expect(promotion.errors[:code]).to include('já está em uso')
     end
   end
+
+  context '#generate_coupon' do
+    it 'successfully' do
+      promotion = Promotion.create!(name: 'Natal', description: '',
+                                    code: 'NATAL10', discount_rate: 10,
+                                    coupon_quantity: 10, expiration_date: '22/12/2033')
+
+      promotion.generate_coupon!
+
+      expect(promotion.coupon.size).to eq 10
+      expect(promotion.coupon.first.code).to eq 'NATAL10-0001'
+      expect(promotion.coupon.last.code).to eq 'NATAL10-0010'
+      expect(promotion.coupon.last.code).not_to eq 'NATAL10-0000'
+      expect(promotion.coupon.last.code).not_to eq 'NATAL10-0011'
+    end
+
+    it 'should not generate if coupon already exist' do
+      promotion = Promotion.create!(name: 'Natal', description: '',
+                                    code: 'NATAL10', discount_rate: 10,
+                                    coupon_quantity: 10, expiration_date: '22/12/2033')
+      promotion.coupon.create!(code: 'NATAL10-0001')
+
+      expect { promotion.generate_coupon! }.to raise_error(ActiveRecord::RecordInvalid)
+      expect(promotion.coupon.size).to eq 1
+    end
+  end
 end

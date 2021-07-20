@@ -19,5 +19,11 @@
 <%= link_to 'Gerar cupon', generate_coupon_promotion_path(@promotion), method: :post %>
 
 <% @promotion.coupon.each do |coupon| %>
-  <%= coupon.code %>
+    <div id="<%= coupon.code %>">
+      <%= coupon.code %>
+      (<%= t(coupon.status) %>)
+    <% if coupon.active? %>
+        <%= link_to 'Inativar', inactivate_coupon_path(coupon), method: :post %>
+    <% end %>
+    </div>
 <% end %>
