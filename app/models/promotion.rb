@@ -2,6 +2,7 @@ class Promotion < ApplicationRecord
   validates :name, :code, :discount_rate, :coupon_quantity, :expiration_date, presence: true
   validates :code, uniqueness: true
   has_many :coupon
+  has_one :promotion_approval
   belongs_to :admin
 
   def generate_coupon!
@@ -17,6 +18,14 @@ class Promotion < ApplicationRecord
   end
 
   def approver
-    PromotionApproval.find(admin: self.admin)
+    PromotionApproval.find_by(promotion: self)
+  end
+
+  def approved?
+    PromotionApproval.find_by(promotion: self)
+  end
+
+  def approved_at?
+    PromotionApproval.find_by(promotion: self)
   end
 end

@@ -13,8 +13,13 @@
   <%= @promotion.expiration_date.strftime("%d/%-m/%Y") %>
   <dt> Quantidade de cupons: </dt>
   <%= @promotion.coupon_quantity %>
-  <dt> Status: </dt>
-  <%= @promotion.approver.email %>
+  <% if @promotion.approved? %>
+    <dt> Status: Aprovada </dt>
+    <dt> Aprovada por: </dt>
+    <dd> <%= @promotion.approver.admin.email %> </dd>
+    <dt> Aprovada em: </dt>
+    <dd> <%= @promotion.approved_at? %> </dd>
+  <% end %>
 </dl>
 
 <%= link_to 'Aprovar', approve_promotion_path, method: :patch %>

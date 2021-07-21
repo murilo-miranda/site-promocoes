@@ -2,9 +2,10 @@ require 'rails_helper'
 
 feature 'Admin approves a promotion' do
   scenario 'must be logged in' do
+    admin = Admin.create!(email: 'msilva@admin', password: 'f4k3p455w0rd')
     promotion = Promotion.create!(name: 'Natal', description: 'Promoção de Natal', code: 'NATAL10',
                                   discount_rate: 10, coupon_quantity: 100,
-                                  expiration_date: '22/12/2033')
+                                  expiration_date: '22/12/2033', admin: admin)
 
     visit promotion_path(promotion)
 
@@ -12,10 +13,10 @@ feature 'Admin approves a promotion' do
   end
 
   scenario 'seeing a link to approve' do
+    admin = Admin.create!(email: 'msilva@admin', password: 'f4k3p455w0rd')
     promotion = Promotion.create!(name: 'Natal', description: 'Promoção de Natal', code: 'NATAL10',
                                   discount_rate: 10, coupon_quantity: 100,
-                                  expiration_date: '22/12/2033')
-    admin = Admin.create!(email: 'msilva@admin', password: 'f4k3p455w0rd')
+                                  expiration_date: '22/12/2033', admin: admin)
 
     login_as admin
     visit root_path
@@ -29,7 +30,7 @@ feature 'Admin approves a promotion' do
     admin = Admin.create!(email: 'msilva@admin', password: 'f4k3p455w0rd')
     promotion = Promotion.create!(name: 'Natal', description: 'Promoção de Natal', code: 'NATAL10',
                                   discount_rate: 10, coupon_quantity: 100,
-                                  expiration_date: '22/12/2033')
+                                  expiration_date: '22/12/2033', admin: admin)
 
     login_as admin
     visit root_path
