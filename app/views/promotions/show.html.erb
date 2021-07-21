@@ -1,3 +1,5 @@
+<%= link_to 'Voltar', promotions_path %>
+
 <dl>
   <dt> Nome: </dt>
   <%= @promotion.name %> </h1>
@@ -11,9 +13,11 @@
   <%= @promotion.expiration_date.strftime("%d/%-m/%Y") %>
   <dt> Quantidade de cupons: </dt>
   <%= @promotion.coupon_quantity %>
+  <dt> Status: </dt>
+  <%= @promotion.approver.email %>
 </dl>
 
-<%= link_to 'Voltar', promotions_path %>
+<%= link_to 'Aprovar', approve_promotion_path, method: :patch %>
 <%= link_to 'Excluir promoção', promotion_path(@promotion), method: :delete %>
 <%= link_to 'Editar promoção', edit_promotion_path(@promotion) %>
 <%= link_to 'Gerar cupon', generate_coupon_promotion_path(@promotion), method: :post %>

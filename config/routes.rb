@@ -3,7 +3,10 @@ Rails.application.routes.draw do
 
   devise_for :admins
   resources :promotions, only: %i[index show new create destroy edit update] do
-    post 'generate_coupon', on: :member
+    member do
+      post 'generate_coupon'
+      patch 'approve'
+    end
   end
 
   resources :coupon, onlu: %i[] do

@@ -52,6 +52,14 @@ class PromotionsController < ApplicationController
     redirect_to promotion_path(@promotion)
   end
 
+  def approve
+    promotion = Promotion.find(params[:id])
+
+    promotion.approve!(current_admin)
+
+    redirect_to promotion_path(promotion)
+  end
+
   private
 
   def promotion_params

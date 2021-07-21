@@ -10,4 +10,12 @@ class Promotion < ApplicationRecord
       end
     end
   end
+
+  def approve!(approver)
+    PromotionApproval.create!(admin: approver, promotion: self, approved_at: Time.now)
+  end
+
+  def approver
+    PromotionApproval.find(admin: self.admin)
+  end
 end
