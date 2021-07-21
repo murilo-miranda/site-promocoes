@@ -6,13 +6,15 @@ describe Promotion do
       promotion = Promotion.new
 
       expect(promotion.valid?).to eq false
-      expect(promotion.errors.count).to eq 5
+      expect(promotion.errors.count).to eq 6
     end
 
     it 'description is optional' do
+      admin = Admin.create!(email: 'msilva@test.com', password: '123456')
       promotion = Promotion.create!(name: 'Natal', description: '',
                                     code: 'NATAL10', discount_rate: 10,
-                                    coupon_quantity: 100, expiration_date: '22/12/2033')
+                                    coupon_quantity: 10, expiration_date: '22/12/2033',
+                                    admin: admin)
 
       expect(promotion.valid?).to eq true
     end
@@ -30,9 +32,11 @@ describe Promotion do
     end
 
     it 'code must be uniq' do
-      Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
-                        code: 'NATAL10', discount_rate: 10,
-                        coupon_quantity: 100, expiration_date: '22/12/2033')
+      admin = Admin.create(email: 'msilva@test.com', password: '123456')
+      promotion = Promotion.create(name: 'Natal', description: '',
+                                    code: 'NATAL10', discount_rate: 10,
+                                    coupon_quantity: 10, expiration_date: '22/12/2033',
+                                    admin: admin)
 
       promotion = Promotion.new(code: 'NATAL10')
 
@@ -44,9 +48,11 @@ describe Promotion do
 
   context '#generate_coupon' do
     it 'successfully' do
+      admin = Admin.create!(email: 'msilva@test.com', password: '123456')
       promotion = Promotion.create!(name: 'Natal', description: '',
                                     code: 'NATAL10', discount_rate: 10,
-                                    coupon_quantity: 10, expiration_date: '22/12/2033')
+                                    coupon_quantity: 10, expiration_date: '22/12/2033',
+                                    admin: admin)
 
       promotion.generate_coupon!
 
@@ -58,13 +64,30 @@ describe Promotion do
     end
 
     it 'should not generate if coupon already exist' do
+      admin = Admin.create!(email: 'msilva@test.com', password: '123456')
       promotion = Promotion.create!(name: 'Natal', description: '',
                                     code: 'NATAL10', discount_rate: 10,
-                                    coupon_quantity: 10, expiration_date: '22/12/2033')
+                                    coupon_quantity: 10, expiration_date: '22/12/2033',
+                                    admin: admin)
       promotion.coupon.create!(code: 'NATAL10-0001')
 
       expect { promotion.generate_coupon! }.to raise_error(ActiveRecord::RecordInvalid)
       expect(promotion.coupon.size).to eq 1
+    end
+  end
+
+  context 'admin references' do
+    it 'must have' do
+      admin = Admin.create!(email: 'msilva@test.com', password: '123456')
+      promotion = Promotion.create(name: 'Natal', description: '',
+                                  code: 'NATAL10', discount_rate: 10,
+                                  coupon_quantity: 10, expiration_date: '22/12/2033',
+                                  admin: admin)
+
+      result = promotion.valid?
+
+      expect(promotion.admin).to eq admin
+      expect(result).to eq true
     end
   end
 end
