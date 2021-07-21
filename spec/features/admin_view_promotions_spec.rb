@@ -13,13 +13,13 @@ feature 'Admin view promotions' do
   end
 
   scenario 'successfully' do
+    admin = Admin.create!(email: 'msilva@admin', password: 'f4k3p455w0rd')
     Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
                       code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
-                      expiration_date: '22/12/2033')
+                      expiration_date: '22/12/2033', admin: admin)
     Promotion.create!(name: 'Cyber Monday', coupon_quantity: 100,
                       description: 'Promoção de Cyber Monday', code: 'CYBER15',
-                      discount_rate: 15, expiration_date: '22/12/2033')
-    admin = Admin.create!(email: 'msilva@admin', password: 'f4k3p455w0rd')
+                      discount_rate: 15, expiration_date: '22/12/2033', admin: admin)
 
     login_as admin
     visit root_path
@@ -34,13 +34,13 @@ feature 'Admin view promotions' do
   end
 
   scenario 'and view details' do
+    admin = Admin.create!(email: 'msilva@admin', password: 'f4k3p455w0rd')
     Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
                       code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
-                      expiration_date: '22/12/2033')
+                      expiration_date: '22/12/2033', admin: admin)
     Promotion.create!(name: 'Cyber Monday', coupon_quantity: 90,
                       description: 'Promoção de Cyber Monday', code: 'CYBER15',
-                      discount_rate: 15, expiration_date: '22/12/2033')
-    admin = Admin.create!(email: 'msilva@admin', password: 'f4k3p455w0rd')
+                      discount_rate: 15, expiration_date: '22/12/2033', admin: admin)
 
     login_as admin
     visit root_path
@@ -66,10 +66,11 @@ feature 'Admin view promotions' do
   end
 
   scenario 'and return to home page' do
-    Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
-                      code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
-                      expiration_date: '22/12/2033')
-    admin = Admin.create!(email: 'msilva@admin', password: 'f4k3p455w0rd')
+    admin = Admin.create!(email: 'msilva@test.com', password: '123456')
+    promotion = Promotion.create!(name: 'Natal', description: '',
+                                  code: 'NATAL10', discount_rate: 10,
+                                  coupon_quantity: 10, expiration_date: '22/12/2033',
+                                  admin: admin)
 
     login_as admin
     visit root_path
@@ -80,10 +81,11 @@ feature 'Admin view promotions' do
   end
 
   scenario 'and return to promotion page' do
-    Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
-                      code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
-                      expiration_date: '22/12/2033')
-    admin = Admin.create!(email: 'msilva@admin', password: 'f4k3p455w0rd')
+    admin = Admin.create!(email: 'msilva@test.com', password: '123456')
+    promotion = Promotion.create!(name: 'Natal', description: '',
+                                  code: 'NATAL10', discount_rate: 10,
+                                  coupon_quantity: 10, expiration_date: '22/12/2033',
+                                  admin: admin)
 
     login_as admin
     visit root_path

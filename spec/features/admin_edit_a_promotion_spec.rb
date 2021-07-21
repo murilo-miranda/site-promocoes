@@ -13,10 +13,10 @@ feature 'Admin edit a promotion' do
   end
 
   scenario 'expecting a edit link' do
-    Promotion.create(name: 'Natal', description: 'Promoção de natal',
-                     code: 'NATAL10', discount_rate: 10, coupon_quantity: 10,
-                     expiration_date: '22/12/2033')
     admin = Admin.create!(email: 'msilva@admin', password: 'f4k3p455w0rd')
+    Promotion.create!(name: 'Natal', description: 'Promoção de natal',
+                    code: 'NATAL10', discount_rate: 10, coupon_quantity: 10,
+                    expiration_date: '22/12/2033', admin: admin)
 
     login_as admin
     visit root_path
@@ -28,10 +28,10 @@ feature 'Admin edit a promotion' do
   end
 
   scenario 'successfully' do
-    Promotion.create(name: 'Natal', description: 'Promoção de natal',
-                    code: 'NATAL10', discount_rate: 10, coupon_quantity: 10,
-                    expiration_date: '22/12/2033')
     admin = Admin.create!(email: 'msilva@admin', password: 'f4k3p455w0rd')
+    Promotion.create!(name: 'Natal', description: 'Promoção de natal',
+                    code: 'NATAL10', discount_rate: 10, coupon_quantity: 10,
+                    expiration_date: '22/12/2033', admin: admin)
 
     login_as admin
     visit root_path
@@ -59,10 +59,10 @@ feature 'Admin edit a promotion' do
   end
 
   scenario 'and cannot be updated with blank attribute' do
+    admin = Admin.create!(email: 'msilva@admin', password: 'f4k3p455w0rd')
     Promotion.create!(name: 'Natal', description: 'Promoção de natal',
                     code: 'NATAL10', discount_rate: 10, coupon_quantity: 10,
-                    expiration_date: '22/12/2033')
-    admin = Admin.create!(email: 'msilva@admin', password: 'f4k3p455w0rd')
+                    expiration_date: '22/12/2033', admin: admin)
 
     login_as admin
     visit root_path
@@ -87,13 +87,13 @@ feature 'Admin edit a promotion' do
   end
 
   scenario 'and cannot be updated with a code already used' do
+    admin = Admin.create!(email: 'msilva@admin', password: 'f4k3p455w0rd')
     Promotion.create!(name: 'Natal', description: 'Promoção de natal',
                       code: 'NATAL10', discount_rate: 10, coupon_quantity: 10,
-                      expiration_date: '22/12/2033')
+                      expiration_date: '22/12/2033', admin: admin)
     Promotion.create!(name: 'Dia do jogador', description: 'Promoção de natal',
                       code: 'PLAY10', discount_rate: 10, coupon_quantity: 10,
-                      expiration_date: '22/12/2033')
-    admin = Admin.create!(email: 'msilva@admin', password: 'f4k3p455w0rd')
+                      expiration_date: '22/12/2033', admin: admin)
 
     login_as admin
     visit root_path

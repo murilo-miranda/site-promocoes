@@ -13,11 +13,11 @@ feature 'Admin inactivate a coupon' do
   end
 
   scenario 'successfully' do
+    admin = Admin.create!(email: 'msilva@admin', password: 'f4k3p455w0rd')
     promotion = Promotion.create!(name: 'Natal', description: 'Promoção de Natal', code: 'NATAL10',
                                   discount_rate: 10, coupon_quantity: 2,
-                                  expiration_date: '22/12/2033')
+                                  expiration_date: '22/12/2033', admin: admin)
     promotion.generate_coupon!
-    admin = Admin.create!(email: 'msilva@admin', password: 'f4k3p455w0rd')
 
     login_as admin
     visit root_path

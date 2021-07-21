@@ -13,10 +13,11 @@ feature 'Admin delete a promotion' do
   end
 
   scenario 'expecting to have a link to delete the promotion' do
+    admin = Admin.create!(email: 'msilva@admin', password: 'f4k3p455w0rd')
     Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
                       code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
-                      expiration_date: '22/12/2033')
-    admin = Admin.create!(email: 'msilva@admin', password: 'f4k3p455w0rd')
+                      expiration_date: '22/12/2033', admin: admin)
+
 
     login_as admin
     visit root_path
@@ -28,10 +29,11 @@ feature 'Admin delete a promotion' do
   end
 
   scenario 'by clicking the link' do
+    admin = Admin.create!(email: 'msilva@admin', password: 'f4k3p455w0rd')
     Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
                       code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
-                      expiration_date: '22/12/2033')
-    admin = Admin.create!(email: 'msilva@admin', password: 'f4k3p455w0rd')
+                      expiration_date: '22/12/2033', admin: admin)
+
 
     login_as admin
     visit root_path
