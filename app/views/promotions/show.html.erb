@@ -16,13 +16,17 @@
   <% if @promotion.approved? %>
     <dt> Status: Aprovada </dt>
     <dt> Aprovada por: </dt>
-    <dd> <%= @promotion.approver.admin.email %> </dd>
+    <dd> <%= @promotion.approver %> </dd>
     <dt> Aprovada em: </dt>
     <dd> <%= @promotion.approved_at? %> </dd>
+  <% else %>
+    <dt> Status: Pendente </dt>
   <% end %>
 </dl>
 
-<%= link_to 'Aprovar', approve_promotion_path, method: :patch %>
+<% unless current_admin == @promotion.admin %>
+  <%= link_to 'Aprovar', approve_promotion_path, method: :patch %>
+<% end %>
 <%= link_to 'Excluir promoção', promotion_path(@promotion), method: :delete %>
 <%= link_to 'Editar promoção', edit_promotion_path(@promotion) %>
 <%= link_to 'Gerar cupon', generate_coupon_promotion_path(@promotion), method: :post %>

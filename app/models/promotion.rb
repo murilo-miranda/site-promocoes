@@ -14,18 +14,18 @@ class Promotion < ApplicationRecord
   end
 
   def approve!(approver)
-    PromotionApproval.create!(admin: approver, promotion: self, approved_at: Time.now)
+    PromotionApproval.create!(admin: approver, promotion: self, approved_at: DateTime.now)
   end
 
   def approver
-    PromotionApproval.find_by(promotion: self)
+    promotion_approval.admin.email
   end
 
   def approved?
-    PromotionApproval.find_by(promotion: self)
+    promotion_approval
   end
 
   def approved_at?
-    PromotionApproval.find_by(promotion: self)
+    promotion_approval.approved_at.to_formatted_s(:short).to_s
   end
 end
