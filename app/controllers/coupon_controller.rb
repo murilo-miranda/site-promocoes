@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CouponController < ApplicationController
   def inactivate
     coupon = Coupon.find(params[:id])

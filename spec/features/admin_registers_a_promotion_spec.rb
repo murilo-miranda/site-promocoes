@@ -3,8 +3,8 @@ require 'rails_helper'
 feature 'Admin register a promotion' do
   scenario 'must be signed in' do
     Promotion.create(name: 'Natal', description: 'Promoção de natal',
-                    code: 'NATAL10', discount_rate: 10, coupon_quantity: 10,
-                    expiration_date: '22/12/2033')
+                     code: 'NATAL10', discount_rate: 10, coupon_quantity: 10,
+                     expiration_date: '22/12/2033')
 
     visit root_path
     click_on 'Promoções'

@@ -3,8 +3,8 @@ require 'rails_helper'
 feature 'Admin edit a promotion' do
   scenario 'must be signed in' do
     Promotion.create(name: 'Natal', description: 'Promoção de natal',
-                    code: 'NATAL10', discount_rate: 10, coupon_quantity: 10,
-                    expiration_date: '22/12/2033')
+                     code: 'NATAL10', discount_rate: 10, coupon_quantity: 10,
+                     expiration_date: '22/12/2033')
 
     visit root_path
     click_on 'Promoções'
@@ -15,8 +15,8 @@ feature 'Admin edit a promotion' do
   scenario 'expecting a edit link' do
     admin = Admin.create!(email: 'msilva@admin', password: 'f4k3p455w0rd')
     Promotion.create!(name: 'Natal', description: 'Promoção de natal',
-                    code: 'NATAL10', discount_rate: 10, coupon_quantity: 10,
-                    expiration_date: '22/12/2033', admin: admin)
+                      code: 'NATAL10', discount_rate: 10, coupon_quantity: 10,
+                      expiration_date: '22/12/2033', admin: admin)
 
     login_as admin
     visit root_path
@@ -30,8 +30,8 @@ feature 'Admin edit a promotion' do
   scenario 'successfully' do
     admin = Admin.create!(email: 'msilva@admin', password: 'f4k3p455w0rd')
     Promotion.create!(name: 'Natal', description: 'Promoção de natal',
-                    code: 'NATAL10', discount_rate: 10, coupon_quantity: 10,
-                    expiration_date: '22/12/2033', admin: admin)
+                      code: 'NATAL10', discount_rate: 10, coupon_quantity: 10,
+                      expiration_date: '22/12/2033', admin: admin)
 
     login_as admin
     visit root_path
@@ -61,8 +61,8 @@ feature 'Admin edit a promotion' do
   scenario 'and cannot be updated with blank attribute' do
     admin = Admin.create!(email: 'msilva@admin', password: 'f4k3p455w0rd')
     Promotion.create!(name: 'Natal', description: 'Promoção de natal',
-                    code: 'NATAL10', discount_rate: 10, coupon_quantity: 10,
-                    expiration_date: '22/12/2033', admin: admin)
+                      code: 'NATAL10', discount_rate: 10, coupon_quantity: 10,
+                      expiration_date: '22/12/2033', admin: admin)
 
     login_as admin
     visit root_path

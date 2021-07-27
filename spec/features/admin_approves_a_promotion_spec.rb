@@ -42,8 +42,8 @@ feature 'Admin approves a promotion' do
 
     expect(current_path).to eq promotion_path(promotion)
     expect(page).to have_content('Status: Aprovada')
-    expect(page).to have_content('Aprovada por: ' + approver.email)
-    expect(page).to have_content('Aprovada em: ' + DateTime.now.to_formatted_s(:short))
+    expect(page).to have_content("Aprovada por: #{approver.email}")
+    expect(page).to have_content("Aprovada em: #{DateTime.now.to_formatted_s(:short)}")
   end
 
   scenario 'can not be approved by creator' do
@@ -61,7 +61,7 @@ feature 'Admin approves a promotion' do
     expect(current_path).to eq promotion_path(promotion)
     expect(page).to_not have_link('Aprovar')
     expect(page).to have_content('Status: Pendente')
-    expect(page).to_not have_content('Aprovada por: ' + approver.email)
-    expect(page).to_not have_content('Aprovada em: ' + DateTime.now.to_formatted_s(:short))
+    expect(page).to_not have_content("Aprovada por: #{approver.email}")
+    expect(page).to_not have_content("Aprovada em: #{DateTime.now.to_formatted_s(:short)}")
   end
 end

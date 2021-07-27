@@ -3,8 +3,8 @@ require 'rails_helper'
 feature 'Admin view promotions' do
   scenario 'must be signed in' do
     Promotion.create(name: 'Natal', description: 'Promoção de natal',
-                    code: 'NATAL10', discount_rate: 10, coupon_quantity: 10,
-                    expiration_date: '22/12/2033')
+                     code: 'NATAL10', discount_rate: 10, coupon_quantity: 10,
+                     expiration_date: '22/12/2033')
 
     visit root_path
     click_on 'Promoções'
@@ -67,10 +67,10 @@ feature 'Admin view promotions' do
 
   scenario 'and return to home page' do
     admin = Admin.create!(email: 'msilva@test.com', password: '123456')
-    promotion = Promotion.create!(name: 'Natal', description: '',
-                                  code: 'NATAL10', discount_rate: 10,
-                                  coupon_quantity: 10, expiration_date: '22/12/2033',
-                                  admin: admin)
+    Promotion.create!(name: 'Natal', description: '',
+                      code: 'NATAL10', discount_rate: 10,
+                      coupon_quantity: 10, expiration_date: '22/12/2033',
+                      admin: admin)
 
     login_as admin
     visit root_path
@@ -82,10 +82,10 @@ feature 'Admin view promotions' do
 
   scenario 'and return to promotion page' do
     admin = Admin.create!(email: 'msilva@test.com', password: '123456')
-    promotion = Promotion.create!(name: 'Natal', description: '',
-                                  code: 'NATAL10', discount_rate: 10,
-                                  coupon_quantity: 10, expiration_date: '22/12/2033',
-                                  admin: admin)
+    Promotion.create!(name: 'Natal', description: '',
+                      code: 'NATAL10', discount_rate: 10,
+                      coupon_quantity: 10, expiration_date: '22/12/2033',
+                      admin: admin)
 
     login_as admin
     visit root_path

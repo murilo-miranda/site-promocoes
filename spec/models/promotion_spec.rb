@@ -24,19 +24,19 @@ describe Promotion do
 
       promotion.valid?
 
-      expect(promotion.errors[:name]).to include ('não pode ficar em branco')
-      expect(promotion.errors[:code]).to include ('não pode ficar em branco')
-      expect(promotion.errors[:discount_rate]).to include ('não pode ficar em branco')
-      expect(promotion.errors[:coupon_quantity]).to include ('não pode ficar em branco')
-      expect(promotion.errors[:expiration_date]).to include ('não pode ficar em branco')
+      expect(promotion.errors[:name]).to include('não pode ficar em branco')
+      expect(promotion.errors[:code]).to include('não pode ficar em branco')
+      expect(promotion.errors[:discount_rate]).to include('não pode ficar em branco')
+      expect(promotion.errors[:coupon_quantity]).to include('não pode ficar em branco')
+      expect(promotion.errors[:expiration_date]).to include('não pode ficar em branco')
     end
 
     it 'code must be uniq' do
       admin = Admin.create(email: 'msilva@test.com', password: '123456')
-      promotion = Promotion.create(name: 'Natal', description: '',
-                                    code: 'NATAL10', discount_rate: 10,
-                                    coupon_quantity: 10, expiration_date: '22/12/2033',
-                                    admin: admin)
+      Promotion.create(name: 'Natal', description: '',
+                       code: 'NATAL10', discount_rate: 10,
+                       coupon_quantity: 10, expiration_date: '22/12/2033',
+                       admin: admin)
 
       promotion = Promotion.new(code: 'NATAL10')
 
@@ -80,9 +80,9 @@ describe Promotion do
     it 'must have' do
       admin = Admin.create!(email: 'msilva@test.com', password: '123456')
       promotion = Promotion.create(name: 'Natal', description: '',
-                                  code: 'NATAL10', discount_rate: 10,
-                                  coupon_quantity: 10, expiration_date: '22/12/2033',
-                                  admin: admin)
+                                   code: 'NATAL10', discount_rate: 10,
+                                   coupon_quantity: 10, expiration_date: '22/12/2033',
+                                   admin: admin)
 
       result = promotion.valid?
 
