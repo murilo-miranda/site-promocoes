@@ -81,7 +81,7 @@ feature 'Admin view promotions' do
   end
 
   scenario 'and return to promotion page' do
-    admin = Admin.create!(email: 'msilva@test.com', password: '123456')
+    admin = Admin.create!(email: 'admin@test.com', password: '123456')
     Promotion.create!(name: 'Natal', description: '',
                       code: 'NATAL10', discount_rate: 10,
                       coupon_quantity: 10, expiration_date: '22/12/2033',
@@ -94,5 +94,45 @@ feature 'Admin view promotions' do
     click_on 'Voltar'
 
     expect(current_path).to eq promotions_path
+  end
+
+  scenario 'search for promotion name' do
+    admin = Admin.create!(email: 'admin@test.com', password: '123456')
+    Promotion.create!(name: 'Natal', description: '',
+                      code: 'NATAL10', discount_rate: 10,
+                      coupon_quantity: 10, expiration_date: '22/12/2033',
+                      admin: admin)
+    Promotion.create!(name: 'Pascoa', description: '',
+                      code: 'PASCOA10', discount_rate: 10,
+                      coupon_quantity: 10, expiration_date: '22/12/2033',
+                      admin: admin)
+
+    login_as admin
+    visit root_path
+    click_on 'Promoções'
+    fill_in 'Busca', with: 'Natal'
+    click_on 'Pesquisar'
+
+    expect(current_path).to eq search_path
+    expect(page).to have_content('Natal')
+    expect(page).to_not have_content('Pascoa')
+  end
+
+  scenario 'search for a non-existent promotion name' do
+    admin = Admin.create!(email: 'admin@test.com', password: '123456')
+    Promotion.create!(name: 'Natal', description: '',
+                      code: 'NATAL10', discount_rate: 10,
+                      coupon_quantity: 10, expiration_date: '22/12/2033',
+                      admin: admin)
+
+    login_as admin
+    visit root_path
+    click_on 'Promoções'
+    fill_in 'Busca', with: 'Pascoa'
+    click_on 'Pesquisar'
+
+    expect(current_path).to eq search_path
+    expect(page).to_not have_content('Natal')
+    expect(page).to have_content('Nenhuma promoção com este nome foi encontrado.')
   end
 end

@@ -4,7 +4,7 @@
 <%= render 'search' %>
 
 <% if @promotions.empty? %>
-  <div class="warning"> Nenhuma promoção cadastrada </div>
+  <div class="warning"> Nenhuma promoção com este nome foi encontrado. </div>
 <% else %>
   <% @promotions.each do |promotion| %>
   <div>

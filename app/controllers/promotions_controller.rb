@@ -63,6 +63,10 @@ class PromotionsController < ApplicationController
     redirect_to promotion_path(promotion)
   end
 
+  def search
+    @promotions = Promotion.where('name = ?', params[:q])
+  end
+
   private
 
   def promotion_params
