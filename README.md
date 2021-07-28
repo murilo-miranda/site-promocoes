@@ -1,24 +1,86 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+<h1 align="center">
+  Site de promoções e cupons
+</h1>
 
-* Ruby version
+<h3 align="center">
+  Site de gerenciamento de promoções e cupons cadastrados.
+</h3>
 
-* System dependencies
+<p align="center">
 
-* Configuration
+</p>
 
-* Database creation
+<h4 align="center">
+  Em desenvolvimento
+</h4>
 
-* Database initialization
+Tabela de conteúdos
+=================
+<!--ts-->
+   * [Sobre o projeto](#-sobre-o-projeto)
+   * [Funcionalidades](#-funcionalidades)
+   * [Layout](#-layout)
+   * [Como executar o projeto](#-como-executar-o-projeto)
+     * [Pré-requisitos](#pré-requisitos)
+     * [Rodando a aplicação](#user-content--rodando-a-aplicação)
+   * [Tecnologias](#-tecnologias)
+   * [Autor](#-autor)
+<!--te-->
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+## Sobre o projeto
 
-* Deployment instructions
+É um sistema web para fazer o gerenciamento de promoções e seus cupons de desconto.
 
-* ...
+Projeto desenvolvido durante o [TreinaDev](https://treinadev.com.br) oferecido pela [Campus Code](https://www.campuscode.com.br) e empresas parceiras.
+
+---
+
+## Funcionalidades
+
+- [x] Ver todas as promoções cadastradas
+- [x] Cadastrar uma promoção
+  - [x] Apagar uma promoção
+  - [x] Editar uma promoção
+  - [x] Aprovar promoção
+  - [x] Buscar por uma promoção
+- [x] Emitir cupons de uma promoção
+  - [x] Queimar um cupom do sistema
+  - [x] Disponibilizar um cupom novamente
+- [x] Autenticação do sistema
+  - [x] Sistema tem um usuário
+  - [] Usuário se cadastra no sistema
+- [] Ver categorias de produto
+  - [] Cadastrar categoria de produto
+  - [] Editar categoria de produto
+- [] Buscar cupom
+  - [] Disponibilidade de cupom via API
+  - [] Queimar cupom via API
+---
+
+## Layout
+
+
+---
+
+## Como executar o projeto
+
+### Pré-requisitos
+
+#### Rodando a aplicação
+
+---
+
+## 🛠 Tecnologias
+
+---
+
+## Autor
+
+<sub><b>Murilo Miranda</b></sub>
+
+[![Gmail Badge](https://img.shields.io/badge/-murilomirandamoreno@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:murilomirandamoreno@gmail.com)](mailto:murilomirandamoreno@gmail.com)
+
+---
