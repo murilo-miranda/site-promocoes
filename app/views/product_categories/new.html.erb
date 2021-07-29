@@ -1,0 +1,16 @@
+<h2> Registrar uma nova categoria de produto </h2>
+
+<% if @product_category.errors.any? %>
+  <% @product_category.errors.full_messages.each do |error| %>
+    <p> <%= error %> </p>
+  <% end %>
+<% end %>
+
+
+<%= form_with model: @product_category do |form| %>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+  <%= form.label :code %>
+  <%= form.text_field :code %>
+  <%= form.submit 'Registrar' %>
+<% end %>

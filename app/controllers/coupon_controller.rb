@@ -18,6 +18,6 @@ class CouponController < ApplicationController
   end
 
   def search
-    @coupons = Coupon.where('code = ?', params[:q])
+    @coupons = Coupon.where(code: params[:q])
   end
 end

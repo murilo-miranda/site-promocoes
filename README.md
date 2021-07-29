@@ -53,7 +53,7 @@ Projeto desenvolvido durante o [TreinaDev](https://treinadev.com.br) oferecido p
   - [x] Sistema tem um usuário
   - [x] Usuário se cadastra no sistema
 - [] Ver categorias de produto
-  - [] Cadastrar categoria de produto
+  - [x] Cadastrar categoria de produto
   - [] Editar categoria de produto
 - [x] Buscar cupom
   - [] Disponibilidade de cupom via API

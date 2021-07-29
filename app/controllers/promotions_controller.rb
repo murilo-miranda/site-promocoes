@@ -64,7 +64,7 @@ class PromotionsController < ApplicationController
   end
 
   def search
-    @promotions = Promotion.where('name = ?', params[:q])
+    @promotions = Promotion.where(name: params[:q])
   end
 
   private
