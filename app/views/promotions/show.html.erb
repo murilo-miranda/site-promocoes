@@ -24,6 +24,12 @@
   <% end %>
 </dl>
 
+<%= form_with url: search_coupon_path, method: :get do %>
+  <%= label_tag :q, 'Busca: ' %>
+  <%= text_field_tag :q %>
+  <%= submit_tag 'Pesquisar' %>
+<% end %>
+
 <% unless current_admin == @promotion.admin %>
   <%= link_to 'Aprovar', approve_promotion_path, method: :patch %>
 <% end %>

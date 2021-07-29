@@ -55,7 +55,7 @@ Projeto desenvolvido durante o [TreinaDev](https://treinadev.com.br) oferecido p
 - [] Ver categorias de produto
   - [] Cadastrar categoria de produto
   - [] Editar categoria de produto
-- [] Buscar cupom
+- [x] Buscar cupom
   - [] Disponibilidade de cupom via API
   - [] Queimar cupom via API
 ---

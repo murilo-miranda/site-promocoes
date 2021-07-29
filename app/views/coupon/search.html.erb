@@ -1,0 +1,24 @@
+<%= link_to 'Registrar uma promoção', new_promotion_path %>
+<%= link_to 'Voltar', root_path %>
+
+<%= form_with url: search_coupon_path, method: :get do %>
+  <%= label_tag :q, 'Busca: ' %>
+  <%= text_field_tag :q %>
+  <%= submit_tag 'Pesquisar' %>
+<% end %>
+
+<% if @coupons.empty? %>
+  <div class="warning"> Nenhum cupom com este nome foi encontrado. </div>
+<% else %>
+  <% @coupons.each do |coupon| %>
+      <div id="<%= coupon.code %>">
+        <%= coupon.code %>
+        (<%= t(coupon.status) %>)
+      <% if coupon.active? %>
+          <%= link_to 'Inativar', inactivate_coupon_path(coupon), method: :post %>
+      <% else %>
+        <%= link_to 'Ativar', active_coupon_path(coupon), method: :post %>
+      <% end %>
+      </div>
+  <% end %>
+<% end %>

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   devise_for :admins
   get 'search', to:'promotions#search'
+  get 'search_coupon', to:'coupon#search'
   resources :promotions, only: %i[index show new create destroy edit update] do
     member do
       post 'generate_coupon'

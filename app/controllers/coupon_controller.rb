@@ -16,4 +16,8 @@ class CouponController < ApplicationController
 
     redirect_to promotion_path(coupon.promotion)
   end
+
+  def search
+    @coupons = Coupon.where('code = ?', params[:q])
+  end
 end
