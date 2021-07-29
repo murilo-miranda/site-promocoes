@@ -51,7 +51,7 @@ Projeto desenvolvido durante o [TreinaDev](https://treinadev.com.br) oferecido p
   - [x] Disponibilizar um cupom novamente
 - [x] Autenticação do sistema
   - [x] Sistema tem um usuário
-  - [] Usuário se cadastra no sistema
+  - [x] Usuário se cadastra no sistema
 - [] Ver categorias de produto
   - [] Cadastrar categoria de produto
   - [] Editar categoria de produto
