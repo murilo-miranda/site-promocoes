@@ -1,7 +1,9 @@
 class ProductCategoriesController < ApplicationController
   before_action :authenticate_admin!
 
-  def index; end
+  def index
+    @product_categories = ProductCategory.all
+  end
 
   def new
     @product_category = ProductCategory.new

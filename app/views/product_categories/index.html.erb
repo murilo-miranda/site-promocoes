@@ -1,3 +1,14 @@
 <h2> Lista de categoria de produtos </h2>
 
 <%= link_to 'Registrar uma categoria de produtos', new_product_category_path %>
+
+<% if @product_categories.any?%>
+  <% @product_categories.each do |product_category| %>
+    <p> Nome: </p>
+    <%= product_category.name %>
+    <p> Código: </p>
+    <%= product_category.code %>
+  <% end %>
+<% else %>
+  <p> Não existe registros de categorias de produtos </p>
+<% end %>
